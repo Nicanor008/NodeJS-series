@@ -1,20 +1,19 @@
 const express = require('express')
+const bodyParser = require('body-parser')
+const adminRoutes = require("./routes/admin")
+const shopRoutes = require("./routes/shop")
+const path = require('path')
 
 const app = express()
 
-app.use('/users', (req, res, next) => {
-    const users = {
-        name: "Nickie",
-        age: 22,
-        nationality: "Kenyan"
-    }
-    res.send(users)
-    console.log('Single User Object')
-})
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', (req, res, next) => {
-    res.send('Express Learning Homepage')
-    console.log("This is the homepage")
+app.use(adminRoutes)
+app.use(shopRoutes)
+
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
 })
 
 app.listen(5000, () => {
