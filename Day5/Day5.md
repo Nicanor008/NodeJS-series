@@ -1,5 +1,5 @@
 # Non-relational Databases
-e.g. Apache CouchDB, Google DataStore, AWS Dynamo DB
+e.g. Apache CouchDB, Google DataStore, AWS Dynamo DB, MongoDB
 
 # MongoDB
 Named after mongodb company. The name came from **humongous**  meaning extraordinarily large.
@@ -64,4 +64,5 @@ Can be achieved in two ways:
 - Mongo is a beast when it comes to features like scalability, load balancing, data center awareness, failovers, replication and distribution but not intergrity checks.
 
 # References
-https://dzone.com/articles/why-mongodb
+- https://dzone.com/articles/why-mongodb
+- https://docs.mongodb.com/manual/
