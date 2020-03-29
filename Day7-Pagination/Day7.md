@@ -1,0 +1,2 @@
+- https://sequelize.org/master/manual/querying.html#pagination-limiting
+- https://stackoverflow.com/questions/3799193/mysql-data-best-way-to-implement-paging
