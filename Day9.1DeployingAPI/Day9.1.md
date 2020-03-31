@@ -1,0 +1,4 @@
+- [Heroku Dev Center](https://devcenter.heroku.com/categories/reference)
+- [Deploying SPAs](https://medium.com/@baphemot/understanding-react-deployment-5a717d4378fd)
+- [AWS](https://aws.amazon.com/getting-started/projects/deploy-nodejs-web-app/)
+- [Digital Oceon](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04)
