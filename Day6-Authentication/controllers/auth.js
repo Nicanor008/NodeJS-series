@@ -72,7 +72,7 @@ exports.postSignup = (req, res, next) => {
         return res.redirect('/signup');
       }
       return bcrypt
-        .hash(password, 12)
+        .hash(password, 24)
         .then(hashedPassword => {
           const user = new User({
             email: email,
