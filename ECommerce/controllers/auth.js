@@ -5,9 +5,6 @@ const sendMail = require("../utils/sendMail");
 const jwt = require("jsonwebtoken");
 const keys = require("../utils/keys");
 
-exports.postLogin = (req, res, next) => {
-  console.log("Got here");
-};
 
 exports.postSignUp = (req, res, next) => {
   const { email, password, username, role } = req.body;
@@ -42,7 +39,7 @@ exports.postSignUp = (req, res, next) => {
     });
 };
 
-exports.postSignIn = (req, res, next) => {
+exports.postSignIn = (req, res) => {
   const { email, password } = req.body;
   const errors = validationResult(req);
 
@@ -50,6 +47,9 @@ exports.postSignIn = (req, res, next) => {
   User.findOne({ email }).then((response) => {
     if (!response) {
       return res.status(404).json({ message: "Email does not exist" });
+    }
+    if(!response.active) {
+      return res.status(400).json({ message: "Account is not activated" })
     }
     bcrypt.compare(password, response.password).then((pass) => {
       if (!pass) {
@@ -66,7 +66,7 @@ exports.postSignIn = (req, res, next) => {
           expiresIn: 31556926,
         },
         (err, token) => {
-          res.status(200).json({
+          return res.status(200).json({
             message: "Login Successful",
             token: "Bearer " + token,
             data: response,
@@ -76,3 +76,17 @@ exports.postSignIn = (req, res, next) => {
     });
   });
 };
+
+exports.activateAccount = (req, res) => {
+  const { id } = req.params;
+
+  // Find the user and update
+  User.findByIdAndUpdate({ _id:id }, { active: true }).then(response => {
+    if (!response) {
+      return res.status(404).json({ message: "User Does not Exist" });
+    }
+    return res.status(200).json({ message: "Account has been activated"})
+  }).catch(error => {
+    res.status(500).json({ error })
+  })
+}

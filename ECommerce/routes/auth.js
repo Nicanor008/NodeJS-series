@@ -6,6 +6,7 @@ const User = require("../models/user");
 
 const router = express.Router();
 
+// create new account
 router.post(
   "/register",
   [
@@ -24,6 +25,10 @@ router.post(
   authControllers.postSignUp
 );
 
+// Login
 router.post("/login", authControllers.postSignIn);
+
+// Activate account
+router.patch("/activate/:id", authControllers.activateAccount)
 
 module.exports = router;

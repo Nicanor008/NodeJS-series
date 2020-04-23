@@ -19,7 +19,7 @@ exports.sendConfirmEmail = (data) => {
   const transport = setup();
   const userEmail = data.email;
   const id = data._id;
-  const generateConfirmationUrl = `http://localhost:3001/auth/activate/${id}`;
+  const generateConfirmationUrl = `http://localhost:4001/auth/activate/${userEmail}`;
 
   const msg = {
     from,
