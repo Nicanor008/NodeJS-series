@@ -22,7 +22,7 @@ mongoose
     useCreateIndex: true
   })
   .then(() => {
-    console.log(chalk.magenta(`DB  connection`))
+    console.log(chalk.green(`DB  connection`))
   })
   .catch((err) => 
   console.log(chalk.red(err))
