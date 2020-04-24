@@ -14,10 +14,10 @@ Key points:
 | POST | /users/login | Login the existing user | ✔️ |
 | GET | /users | Get all users(admin) | ✔️ |
 | GET | /users/:_id | Get a single user(loggedIn user/admin) | ✅ |
-| PATCH | /users/verify | verify account/email | ✅ |
-| PATCH | /users/password-reset | Allow a user to reset a passwrd| 
-| PATCH | /users/:_id | Update an existing user | 
-| DELETE | /users/_id | Delete a user |
+| PATCH | /users/activate/:email | verify account/email | ✅ |
+| PATCH | /users/password-reset | Allow a user to reset a passwrd| ✅ |
+| PATCH | /users/:_id | Update an existing user | ✅ |
+| DELETE | /users/:_id | Delete a user | ✅ |
 | - | - | - |
 | POST | /products | Create a new product |
 | GET | /products | Get/Fetch all products |
