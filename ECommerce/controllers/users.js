@@ -40,7 +40,7 @@ exports.getAllUsers = (req, res, next) => {
     });
 };
 
-// get single user
+// get single user 
 exports.getSingleUser = (req, res) => {
   User.findById({ _id: req.params.id })
     .then((response) => {
@@ -60,3 +60,18 @@ exports.getSingleUser = (req, res) => {
       return res.status(500).json({ error });
     });
 };
+
+// update user account
+exports.updateUserAccount = (req, res) => {
+  const { role, username } = req.body;
+  if(req.id !== req.params.id) {
+    return res.status(403).json({ message: "Unathorised, you can only update your account" })
+  }
+  User.findOneAndUpdate({ _id:req.params.id }, {
+    role, username
+  }).then(response => {
+    return res.status(200).json({ message: "user updated successfully", data: response })
+  }).catch(error => {
+    res.status(500).json({ message: "Something unexpected happened. Try again"})
+  })
+}
