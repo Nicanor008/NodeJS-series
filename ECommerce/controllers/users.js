@@ -1,6 +1,6 @@
 const User = require("../models/user");
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 10;
 
 // get all users
 exports.getAllUsers = (req, res, next) => {
@@ -25,19 +25,38 @@ exports.getAllUsers = (req, res, next) => {
         currentPage: page,
         previousPage: page - 1,
         nextPage: page + 1,
-        lastPage: Math.ceil(total / ITEMS_PER_PAGE)
-      }
-      res
-        .status(200)
-        .json({
-          message: "Users fetched",
-          pagination,
-          users,
-        });
+        lastPage: Math.ceil(total / ITEMS_PER_PAGE),
+      };
+      res.status(200).json({
+        message: "Users fetched",
+        pagination,
+        users,
+      });
     })
     .catch((error) => {
       return res
         .status(500)
         .json({ message: "Something went wrong, Try again", error });
+    });
+};
+
+// get single user
+exports.getSingleUser = (req, res) => {
+  User.findById({ _id: req.params.id })
+    .then((response) => {
+      if (!response) {
+        return res.status(404).json({ message: "User does not exist" });
+      }
+      if (req.id === req.params.id) {
+        return res
+          .status(200)
+          .json({ message: "Your Profile", data: response });
+      }
+      return res
+        .status(200)
+        .json({ message: "User Fetched successfully", data: response });
+    })
+    .catch((error) => {
+      return res.status(500).json({ error });
     });
 };
