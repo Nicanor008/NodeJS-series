@@ -29,6 +29,6 @@ router.post(
 router.post("/login", authControllers.postSignIn);
 
 // Activate account
-router.patch("/activate/:id", authControllers.activateAccount)
+router.patch("/activate/:email", authControllers.activateUserAccount);
 
 module.exports = router;

@@ -77,16 +77,14 @@ exports.postSignIn = (req, res) => {
   });
 };
 
-exports.activateAccount = (req, res) => {
-  const { id } = req.params;
-
-  // Find the user and update
-  User.findByIdAndUpdate({ _id:id }, { active: true }).then(response => {
-    if (!response) {
-      return res.status(404).json({ message: "User Does not Exist" });
+// activate account
+exports.activateUserAccount = (req, res) => {
+  User.findOneAndUpdate({ email: req.params.email }, { isverified: true }).then(response => {
+    if(!response) {
+    res.status(404).json({ message: "Email not available" })
     }
-    return res.status(200).json({ message: "Account has been activated"})
+    res.status(200).json({ message: "Account has been activated", data: response })
   }).catch(error => {
-    res.status(500).json({ error })
+    res.status(500).json({ message: "Something went wrong. Try again", error })
   })
 }

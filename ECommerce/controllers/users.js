@@ -71,7 +71,31 @@ exports.updateUserAccount = (req, res) => {
     role, username
   }).then(response => {
     return res.status(200).json({ message: "user updated successfully", data: response })
-  }).catch(error => {
+  }).catch(() => {
     res.status(500).json({ message: "Something unexpected happened. Try again"})
+  })
+}
+
+// soft delete account
+exports.softDeleteUserAccount = (req, res) => {
+  if(req.id !== req.params.id) {
+    return res.status(403).json({ message: "Unathorised, you can't delete someone's account" })
+  }
+  User.findByIdAndUpdate({ _id:req.params.id  }, { active: false }).then(response => {
+    res.status(200).json({ message:"Account has been deactivated" })
+  }).catch(error => {
+    return res.status(500).json({ message: "Something went wrong. Try again", error})
+  })
+}
+
+// hard delete account
+exports.deleteUserAccount = (req, res) => {
+  if(req.id !== req.params.id) {
+    return res.status(403).json({ message: "Unathorised, you can't delete someone's account" })
+  }
+  User.findByIdAndDelete({ _id:req.params.id }).then(() => {
+    res.status(200).json({ message: "Account has been deleted" })
+  }).catch(error => {
+    res.status(500).json({ message: "Something Went Wrong. Try again" })
   })
 }

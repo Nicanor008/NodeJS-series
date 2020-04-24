@@ -14,4 +14,10 @@ router.get("/:id", is_Auth, userControllers.getSingleUser)
 // update/put/patch existing user
 router.patch("/:id", is_Auth, userControllers.updateUserAccount)
 
+// soft delete/deactivate account
+// router.patch()
+
+// hard delete
+router.delete("/:id", is_Auth, userControllers.deleteUserAccount)
+
 module.exports = router;
