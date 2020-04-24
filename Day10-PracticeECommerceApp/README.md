@@ -8,11 +8,11 @@ Key points:
 - Checkout(handle by maybe stripe)
 
 # User Stories
-| Method | Endpoint | Description|
-| ------- | ------ | ------ |
-| POST | /users/register | Create a new user |
-| POST | /users/login | Login the existing user |
-| GET | /users | Get all users(admin) |
+| Method | Endpoint | Description| status | 
+| ------- | ------ | ------ | ----- | 
+| POST | /users/register | Create a new user | ✔️ | 
+| POST | /users/login | Login the existing user | ✔️ |
+| GET | /users | Get all users(admin) | ✔️ |
 | GET | /users/:_id | Get a single user(loggedIn user/admin)
 | PATCH | /users/verify | verify account/email |
 | PATCH | /users/password-reset | Allow a user to reset a passwrd| 
