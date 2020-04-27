@@ -33,9 +33,11 @@ const PORT = 4001;
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/users");
+const productRoutes = require("./routes/products")
 
 app.use("/v1/auth", authRoutes);
 app.use("/v1/users", userRoutes);
+app.use("/v1/products", productRoutes);
 
 
 app.listen(PORT, () => {

@@ -3,7 +3,7 @@ const User = require("../models/user");
 const ITEMS_PER_PAGE = 10;
 
 // get all users
-exports.getAllUsers = (req, res, next) => {
+exports.getAllUsers = (req, res) => {
   const page = +req.query.page || 1;
   let total;
   User.find()
