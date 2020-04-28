@@ -42,6 +42,7 @@ app.use("/v1/users", userRoutes);
 app.use("/v1/products", productRoutes);
 app.use("/v1/cart", cartRoutes)
 app.use("/v1/sales", salesRoutes)
+app.use("/v1/product/rate", require('./routes/rate'))
 
 app.listen(PORT, () => {
   console.log(chalk.magenta(`server running on http://localhost/${PORT}`))
