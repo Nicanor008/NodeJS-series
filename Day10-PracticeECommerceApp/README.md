@@ -30,19 +30,17 @@ Key points:
 | DELETE | /products/user/:_userId | Delete Many products added by a specific user | ✅ |
 | GET | /products/:name | Search products by product name | ✅ |
 | - | - | - |
-| POST | /buy | Allow a single user to buy a single products(Adds to cart)| 
+| POST | /buy | Allow a single user to buy a single products(Adds to cart)| ✔️ |
 | - | **RATINGS** | - |
 | POST | /product/rate | User who has bought a product to rate |
 | GET | /product/rate/:_productId | Get all rates for a single product |
 | GET | /product/rate/:_productId/:userId | Get a rate for a single person on a single product |
-| - | - | - |
-| POST | /checkout | Create a checkout page |
 | - | **CART** | - |
-| POST | /cart | Buy products in a cart |
-| GET | /cart/:_userId | Get all items in a cart according to the user |
-| PATCH | /cart:_userId | Update the cart of a user |
-| DELETE | /cart/:_id | Delete items in a cart |
-| - | - | - |
+| POST | /cart | Buy products in a cart | ✔️ |
+| GET | /cart/:_userId | Get all items in a cart according to the user | ✔️ |
+| PATCH | /cart/:_userId | Update the cart of a user | ✔️ |
+| DELETE | /cart/:_id | Delete items in a cart | ✔️ |
+| - | **Notification** | - |
 | POST | /notification | Create new notification |
 | GET | /notification | Get all user notifications |
 | GET | /notification/:_id | Get a single notificaton |
