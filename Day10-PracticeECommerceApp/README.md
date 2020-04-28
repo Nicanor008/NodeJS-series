@@ -18,7 +18,7 @@ Key points:
 | PATCH | /users/password-reset | Allow a user to reset a passwrd| ✔️ |
 | PATCH | /users/:_id | Update an existing user | ✔️ |
 | DELETE | /users/:_id | Delete a user | ✔️ |
-| GET | /users/:_name | Search users by name |
+| GET | /users/:_name | Search users by name | ✔️ |
 |- |**Products** | - |
 | POST | /products | Create a new product |  ✅ |
 | GET | /products | Get/Fetch all products |  ✅ |
@@ -28,16 +28,16 @@ Key points:
 | PATCH | /products/:_id | Update a specific product |  ✅ |
 | DELETE | /products/:_id | Delete a specific product |  ✅ |
 | DELETE | /products/user/:_userId | Delete Many products added by a specific user | ✅ |
-| GET | /products/:name | Search products by product name |
+| GET | /products/:name | Search products by product name | ✅ |
 | - | - | - |
 | POST | /buy | Allow a single user to buy a single products(Adds to cart)| 
-| - | - | - |
+| - | **RATINGS** | - |
 | POST | /product/rate | User who has bought a product to rate |
 | GET | /product/rate/:_productId | Get all rates for a single product |
 | GET | /product/rate/:_productId/:userId | Get a rate for a single person on a single product |
 | - | - | - |
 | POST | /checkout | Create a checkout page |
-| - | - | - |
+| - | **CART** | - |
 | POST | /cart | Buy products in a cart |
 | GET | /cart/:_userId | Get all items in a cart according to the user |
 | PATCH | /cart:_userId | Update the cart of a user |
