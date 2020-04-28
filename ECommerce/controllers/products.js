@@ -5,7 +5,6 @@ const ITEMS_PER_PAGE = 20;
 
 // create new product
 exports.createProduct = (req, res) => {
-  console.log(">>>>>>>>..............", req.body);
   if (!req.body.name) {
     res.status(404).json({ message: "Product Name is required" });
   }
