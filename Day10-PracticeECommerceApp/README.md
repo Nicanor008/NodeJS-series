@@ -32,9 +32,8 @@ Key points:
 | - | - | - |
 | POST | /buy | Allow a single user to buy a single products(Adds to cart)| ✔️ |
 | - | **RATINGS** | - |
-| POST | /product/rate | User who has bought a product to rate |
-| GET | /product/rate/:_productId | Get all rates for a single product |
-| GET | /product/rate/:_productId/:userId | Get a rate for a single person on a single product |
+| POST | /product/rate | User who has bought a product to rate | ✅ |
+| GET | /product/rate/:_productId | Get all rates for a single product | ✅ |
 | - | **CART** | - |
 | POST | /cart | Buy products in a cart | ✔️ |
 | GET | /cart/:_userId | Get all items in a cart according to the user | ✔️ |
