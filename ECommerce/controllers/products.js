@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("../models/products");
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 20;
 
 // create new product
 exports.createProduct = (req, res) => {
@@ -122,7 +122,6 @@ exports.fetchSingleProduct = async (req, res) => {
 
 // fetch all products added by a specific user
 exports.fetchUserProducts = async (req, res) => {
-  console.log(">>>...................user id------......", req.params.userId);
   await Product.aggregate([
     { $match: { addedByUserId: mongoose.Types.ObjectId(req.params.userId) } },
     {
@@ -136,7 +135,6 @@ exports.fetchUserProducts = async (req, res) => {
     { $unwind: "$addedBy" },
   ])
     .then((data) => {
-      console.log(">>>>>>>>>>>...........", data);
       if (data.length === 0) {
         return res.status(404).json({
           message: "User Doesn't have any products",
@@ -225,3 +223,19 @@ exports.deleteManyProducts = (req, res) => {
       return res.status(500).json({ message: "Something went Wrong. Try again" })
   })
 };
+
+// search products by product name
+exports.searchProducts = async(req, res) => {
+    Product.find({ name: {'$regex': req.params.name} }).then(data => {
+        if (data.length === 0) {
+            return res.status(404).json({
+              message: `${req.params.name} does not exist`,
+            });
+          }
+          return res.status(200).json({ message: `${data.length} Products found`, data });
+    }).catch((error) => {
+        res
+          .status(500)
+          .json({ message: "Something went wrong. Try again", error });
+      });
+}

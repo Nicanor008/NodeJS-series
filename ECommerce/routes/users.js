@@ -20,4 +20,7 @@ router.patch("/:id", is_Auth, userControllers.updateUserAccount)
 // hard delete
 router.delete("/:id", is_Auth, userControllers.deleteUserAccount)
 
+// search users
+router.get("/search/:name", userControllers.searchUsers)
+
 module.exports = router;

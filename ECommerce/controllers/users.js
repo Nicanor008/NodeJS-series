@@ -99,3 +99,19 @@ exports.deleteUserAccount = (req, res) => {
     res.status(500).json({ message: "Something Went Wrong. Try again" })
   })
 }
+
+// search users
+exports.searchUsers = (req, res) => {
+  User.find({ username: {'$regex': req.params.name } }).then(data => {
+    if (data.length === 0) {
+      return res.status(404).json({
+        message: `${req.params.name} does not exist`,
+      });
+    }
+    return res.status(200).json({ message: `${data.length} Users found`, data });
+}).catch((error) => {
+  res
+    .status(500)
+    .json({ message: "Something went wrong. Try again", error });
+});
+}

@@ -26,4 +26,7 @@ router.delete("/:id", is_Auth, productControllers.deleteProduct)
 // delete many products
 router.delete("/user/:userId", is_Auth, productControllers.deleteManyProducts)
 
+// search products by product name
+router.get("/search/:name", productControllers.searchProducts)
+
 module.exports = router;
