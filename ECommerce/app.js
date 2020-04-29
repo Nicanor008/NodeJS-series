@@ -46,4 +46,8 @@ app.use("/v1/product/rate", require('./routes/rate'))
 
 app.listen(PORT, () => {
   console.log(chalk.magenta(`server running on http://localhost/${PORT}`))
+  // const io = require('./socket').init(server);
+  //   io.on('connection', socket => {
+  //     console.log('Client connected');
+  //   });
 });

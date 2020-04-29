@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("../models/products");
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 2;
 
 // create new product
 exports.createProduct = (req, res) => {
@@ -76,7 +76,7 @@ exports.fetchAllProducts = async (req, res) => {
     },
   ])
     .then((data) => {
-      if (!data) {
+      if (data.length === 0) {
         return res.status(404).json({ message: "No Product available" });
       }
       return res
