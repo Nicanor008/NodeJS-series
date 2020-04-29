@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-const from = "\"Moovers\" <reachnetsystems.com>";
+const from = "\"ShopMerc\" <shopmerc.com>";
 
 function setup() {
   return nodemailer.createTransport({
@@ -9,8 +9,8 @@ function setup() {
     secure: false,
     service: "Gmail",
     auth: {
-      user: 'shomancodes@gmail.com',
-      pass: 'ShomanCodes@2020',
+      user: 'somename@gmail.com',
+      pass: '****************',
     },
   });
 }
