@@ -1,0 +1,17 @@
+# Node Dependencies
+node_modules/
+
+# IDE folders
+.idea
+.vscode
+
+# lock
+yarn.lock
+package-lock.json
+
+# Mac OS X Finder
+.DS_Store
+
+# yarn log
+yarn-error.log
+
