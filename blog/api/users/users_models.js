@@ -33,7 +33,7 @@ const userSchema = new Schema(
     },
     pictureUrl: {
         type: String,
-        required: true
+        required: false
     }
   },
   { timestamps: true }

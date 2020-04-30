@@ -1,4 +1,4 @@
-const User = require("../models/users");
+const User = require("./users_models");
 const statusCode = require("http-status");
 
 // all users

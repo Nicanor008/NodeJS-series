@@ -1,6 +1,6 @@
-const User = require("../models/users")
+const User = require("./users_models")
 const bcrypt = require("bcryptjs")
-const sendMail = require("../utils/sendMail")
+const sendMail = require("../../utils/sendMail")
 const statusCode = require("http-status")
 const jwt = require("jsonwebtoken")
 const path = require('path');
@@ -10,6 +10,7 @@ exports.registerUser = (req, res) => {
     const { password, email, name, role } = req.body;
     // const image = req.file;
     // const pictureUrl = image.path;
+    console.log(">>>>>>>>>>>>>>>........pic url...........", req.body)
 
     User.findOne({ email }).then(userExists => {
         if(userExists) {
