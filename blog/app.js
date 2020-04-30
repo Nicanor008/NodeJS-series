@@ -7,6 +7,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const dotEnv = require("dotenv")
 
+const User = require("./api/users/users_models")
 const allRoutes = require("./api")
 
 // middlewares
@@ -14,25 +15,39 @@ const app = express();
 dotEnv.config();
 
 // global variables
-const DB_URI = "mongodb://127.0.0.1/blog";
-const PORT = 4001;
+// const DB_URI = "mongodb://127.0.0.1/blog";
+const PORT = process.env.PORT || 4003;
 
 const store = new MongoDBStore({
-  uri: DB_URI,
+  uri: process.env.DB_URI,
   collection: "sessions",
 });
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(
   session({
-    secret: "my secret",
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    store: store,
+    store,
+    isLoggedIn: false,
+    user: ""
   })
 );
+
+// app.use((req, res, next) => {
+//   if (!req.session.user) {
+//     return next();
+//   }
+//   User.findById(req.session.user._id)
+//     .then(user => {
+//       req.user = user;
+//       next();
+//     })
+//     .catch(err => console.log(err));
+// });
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -64,7 +79,7 @@ app.use(
 
 // DB connection
 mongoose
-  .connect(DB_URI, {
+  .connect(process.env.DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
