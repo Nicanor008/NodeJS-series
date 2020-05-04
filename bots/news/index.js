@@ -1,0 +1,1 @@
+// access to quick and real time news, not fake news
