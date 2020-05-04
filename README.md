@@ -5,5 +5,6 @@
 - Building NodeJS Apps
     - [E Commerce API](./Ecommerce/README.md)
     - [Minimalist Blog](./blog/README.md)
+    - [Auth Re-Usable Code](./Auth/README.md)
 
 **More Coming Soon**
