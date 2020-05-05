@@ -1,0 +1,11 @@
+node_modules
+*.lock
+*.log
+.DS_Store
+
+# env
+.env
+
+# code coverage
+coverage
+
