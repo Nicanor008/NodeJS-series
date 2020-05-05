@@ -3,7 +3,7 @@
 ### NodeJS Learning Curve
 - [Levelling up]("./10DaysOfNodeJS/README.md")
 - Building NodeJS Apps
-    - [E Commerce API](https://github.com/Nicanor008/10-Days-Of-NodeJS/tree/master/ECommerce/README.md)
+    - [E Commerce API](https://github.com/Nicanor008/10-Days-Of-NodeJS/tree/master/ECommerce)
     - [Minimalist Blog]('./blog/README.md')
     - [Auth Re-Usable Code]('./Auth/README.md')
 
