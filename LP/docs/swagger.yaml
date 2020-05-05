@@ -48,6 +48,24 @@ components:
         pictureUrl:
           type: String
           example: ./images/1234.jpg
+      Todo:
+        type: object
+        properties:
+          name:
+            type: String
+            example: This is the first todo item
+          startTime:
+            type: Date
+            example: 2020-05-05T14:14:57.988Z
+          endTime:
+            type: Date
+            example: 2020-05-05T14:14:57.988Z
+          duration:
+            type: String
+            example: 4 hours
+          user:
+            type: ObjectID
+            example: 5eb17400111b219364f89b46
 
 paths:
   /auth/register:
@@ -129,6 +147,7 @@ paths:
           description: Email does not exist or Wrong password
         500:
           $ref: '#/components/schemas/errors/properties'
+
   /users:
     get:
       summary: Fetch all users
@@ -141,3 +160,69 @@ paths:
           description: No Users available
         500:
           $ref: '#/components/schemas/errors/properties'
+  
+  /todo:
+    post:
+      summary: Create a new todo item
+      tags:
+        - Todo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: String
+                  example: This is the first todo item
+                startTime:
+                  type: Date
+                  example: 2020-05-05T14:14:57.988Z
+                endTime:
+                  type: Date
+                  example: 2020-05-05T14:14:57.988Z
+                duration:
+                  type: String
+                  example: 4 hours
+                user:
+                  type: ObjectID
+                  example: 5eb17400111b219364f89b46
+      responses:
+        200:
+          description: Todo Item has been created
+        404:
+          description: Todo item name is required
+        500:
+          $ref: '#/components/schemas/errors/properties'
+  
+  /todo:
+    get:
+      summary: Fetch all todos
+      tags:
+        - Todo
+      responses:
+        200:
+          description: Your Todo Items
+        404: 
+          description: No Todo items
+        500:
+          $ref: '#/components/schemas/errors/properties'
+
+  /todo/user:
+    get:
+      summary: Fetch user todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Your all todo items
+        404: 
+          description:You don't have any todo items
+        

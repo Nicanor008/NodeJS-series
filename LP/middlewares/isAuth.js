@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
   if (!decodedToken || !authHeader) {
     return res
       .status(401)
-      .json({ message: "Unauthorised, you must login to continue" });
+      .json({ message: "Unauthorised, login to continue" });
   }
   req.id = decodedToken.id;
   req.email = decodedToken.email;

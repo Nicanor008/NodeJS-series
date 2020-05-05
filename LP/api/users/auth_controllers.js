@@ -46,10 +46,6 @@ exports.loginUser = (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email })
     .then((response) => {
-      console.log(
-        ">>>>>>>>>>>>>............................>>>>>>>>>>>>>",
-        req.session
-      );
       if (!response) {
         return res.status(404).json({ message: "Email does not exist" });
       }
@@ -81,7 +77,6 @@ exports.loginUser = (req, res) => {
           req.session.user = response._id;
           req.session.save((err) => {
             console.log(err);
-            console.log(">>>>>>................>>>>>>", req.session);
             return res.status(statusCode.OK).json({
               message: "Login successful",
               token: "Bearer " + token,
@@ -117,16 +112,16 @@ exports.verifyAccount = (req, res) => {
     .then((user) => {
       if (!user) {
         return res
-          .status(statusCode.NOT_FOUND)
+          .status(404)
           .json({ message: `Account ${email} does not exist` });
       }
       return res
-        .status(statusCode.OK)
+        .status(200)
         .json({ message: "Account has been verified", data: user });
     })
     .catch((error) => {
       return res
-        .status(statusCode.SERVICE_UNAVAILABLE)
+        .status(500)
         .json({ message: "Something went happen. Try again", error });
     });
 };
