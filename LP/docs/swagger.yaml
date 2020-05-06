@@ -225,4 +225,220 @@ paths:
           description: Your all todo items
         404: 
           description:You don't have any todo items
+  
+  /todo/ongoing:
+    get:
+      summary: Get all ongoing/in-progress todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description:  2 Todo done
+        404: 
+          description: You don't have any todo items
         
+  /todo/complete:
+    get:
+      summary: Get all completed todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 2 ongoing todo
+        404: 
+          description:You don't have any todo items
+
+  /todo/ongoing/:id:
+    patch:
+      summary: Update todo either as done or in progress
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: id
+          description: Todo item id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completed:
+                  type: Boolean
+                  example: false
+      responses:
+        200:
+          description:  Todo item updated
+        404: 
+          description: Completed status is required
+
+  /todo/archive:
+    get:
+      summary: Fetch all archived todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200: description: Archived todo items
+        404: description: No archived todo items
+
+  /todo/archive/:_id:
+    patch:
+      summary: Archive or unarchive a todo item
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: _id
+          description: Todo item id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                archived:
+                  type: Boolean
+                  example: false
+      responses:
+        200:
+          description:  Todo has been archived
+        404: 
+          description: Todo item doesn't exists
+  
+  /todo/:_id:
+    delete:
+      summary: Delete a single todo item
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: _id
+          description: Todo item id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description:  Todo item deleted
+        404: 
+          description: Todo item does not exist
+  
+  /todo/user:
+    delete:
+      summary: Delete all user todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description:  2 todo items deleted
+        404: 
+          description: You don't have any todo items
+  
+  /todo/:_id:
+    get:
+      summary: Get a single todo item
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: _id
+          description: Todo item id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Todo item
+        404: 
+          description: Todo item not available
+
+  /todo/:_id:
+    patch:
+      summary: Update an existing todo item
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: _id
+          description: Todo item id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: String
+                  example: Updated todo item
+      responses:
+        200:
+          description: Todo item
+        404: 
+          description: Todo item not available

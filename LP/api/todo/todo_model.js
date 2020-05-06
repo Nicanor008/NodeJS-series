@@ -20,11 +20,20 @@ const todoSchema = new Schema(
       type: String,
       required: false,
     },
+    completed: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: false,
     },
+    archived: {
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );

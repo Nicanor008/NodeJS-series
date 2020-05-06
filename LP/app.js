@@ -20,7 +20,7 @@ const swaggerDocument = YAML.load('docs/swagger.yaml');
 // global variables
 const PORT = process.env.PORT || 4003;
 const store = new MongoDBStore({
-  uri: process.env.DB_URI_TEST,
+  uri: process.env.DB_URI,
   collection: "sessions",
 });
 app.use(cors());
