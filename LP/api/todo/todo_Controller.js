@@ -166,22 +166,38 @@ exports.getSingleTodo = (req, res) => {
 // update single todo item body
 exports.updateSingleTodo = (req, res) => {
   const { _id } = req.params;
-    Todo.findByIdAndUpdate({ _id }, req.body).then((updatedItem) => {
-    console.log(">>>>>>>>..............", updatedItem)
+  Todo.findByIdAndUpdate({ _id }, req.body).then((updatedItem) => {
     if (!updatedItem) {
       return res.status(404).json({ message: "Todo item not available" });
     }
-    Todo.findOne({ _id }).then(data => {
+    Todo.findOne({ _id }).then((data) => {
       return res.status(200).json({ message: "Todo updated", data });
-    })
+    });
   });
 };
 
 // search todo by name
-// exports.searchTodoItemByName = (req, res) => {
-//   const { name } = req.params
-
-// }
+exports.searchTodoItemByName = (req, res) => {
+  const { name } = req.params;
+  Todo.find({ name: { $regex: name } }).then((data) => {
+    if (!data.length) {
+      return res.status(200).json({ message: `No todo with ${name} found` });
+    }
+    return res.status(200).json({ message: `${data.length} todo found`, data });
+  });
+};
 
 // list todo by tags
-
+exports.listTodoByTags = (req, res) => {
+  const { tag } = req.params;
+  Todo.aggregate([{ $match: { tags: { $regex: tag } } }]).then((data) => {
+  if (!data.length) {
+      return res
+        .status(200)
+        .json({ message: `No todo with  tag ${tag} found` });
+    }
+    return res
+      .status(200)
+      .json({ message: `${data.length} todo with tag ${tag}`, data });
+  });
+};

@@ -32,4 +32,8 @@ router
   .patch(isAuth, todoControllers.updateSingleTodo)
   .delete(isAuth, todoControllers.deleteTodoItem);
 
+  // tags & search
+  router.route("/search/:name").get(todoControllers.searchTodoItemByName)
+  router.route("/tags/:tag").get(todoControllers.listTodoByTags)
+
 module.exports = router;

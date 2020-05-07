@@ -175,6 +175,9 @@ paths:
                 name:
                   type: String
                   example: This is the first todo item
+                category:
+                  type: String
+                  example: todo/goal/reminder
                 startTime:
                   type: Date
                   example: 2020-05-05T14:14:57.988Z
@@ -442,3 +445,39 @@ paths:
           description: Todo item
         404: 
           description: Todo item not available
+
+  /todo/search/:name:
+    get:
+      summary: Search Todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: name
+          description: Todo item name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 2 todo found
+        404: 
+          description: No todo with ${name} found
+  
+  /todo/tags/:tag:
+    get:
+      summary: Filter todo by tags
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: tag
+          description: Todo tag names
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 2 todo with tag ${tag}
+        404: 
+          description: No todo with tag ${name} found

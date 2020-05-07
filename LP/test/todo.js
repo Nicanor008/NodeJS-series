@@ -19,6 +19,7 @@ const todoData = {
     name: "This is a test todo data",
     completed: false,
     _id: "5ea06d80285916894e347168",
+    tags: ["test"],
   },
   session: {
     isLoggedIn: true,
@@ -46,6 +47,42 @@ describe("Todo", () => {
       expect(response).to.have.property("statusCode", 200);
       expect(response).to.have.property("message", "Todo Item created");
     });
+  });
+
+
+  // list todo by tags
+  it("should list todo by tags", () => {
+    todoControllers.createTodo(todoData, res, (response) => {});
+    todoControllers.listTodoByTags(
+      {
+        params: {
+          tag: "test",
+        },
+      },
+      res,
+      (response) => {
+        expect(response).to.have.property("statusCode").to.equal(200);
+        expect(response).to.have.property("message");
+        expect(response).to.have.property("data");
+      }
+    );
+  });
+
+  // list todo by tags fail
+  it("should fail to list todo by tags", () => {
+    todoControllers.createTodo(todoData, res, (response) => {});
+    todoControllers.listTodoByTags(
+      {
+        params: {
+          tag: "tesfgt",
+        },
+      },
+      res,
+      (response) => {
+        expect(response).to.have.property("statusCode").to.equal(404);
+        expect(response).to.have.property("message");
+      }
+    );
   });
 
   //   create todo as non-logged in user
@@ -115,6 +152,8 @@ describe("Todo", () => {
       );
     });
   });
+
+  
 
   after((done) => {
     setup.DisconnectDB(done, Todo);
@@ -304,19 +343,53 @@ describe("Completed Todos", () => {
 
   // update todo item
   it("Should update single todo item", () => {
-      todoControllers.updateSingleTodo(
-        {
-          params: { _id: "5ea06d80285916894e347168" },
-          body: { name: "Update" },
-        },
-        res,
-        (response) => {
-          expect(response).to.have.property("statusCode", 200);
-          expect(response).to.have.property("message");
-          expect(response).to.have.property("data");
-        }
-      );
+    todoControllers.updateSingleTodo(
+      {
+        params: { _id: "5ea06d80285916894e347168" },
+        body: { name: "Update" },
+      },
+      res,
+      (response) => {
+        expect(response).to.have.property("statusCode", 200);
+        expect(response).to.have.property("message");
+        expect(response).to.have.property("data");
+      }
+    );
   });
+
+  // search todo success
+  it("should search todo item - 200", () => {
+    todoControllers.searchTodoItemByName(
+      {
+        params: {
+          name: "This is a test",
+        },
+      },
+      res,
+      (response) => {
+        expect(response).to.have.property("statusCode", 200);
+        expect(response).to.have.property("message");
+        expect(response).to.have.property("data");
+      }
+    );
+  });
+
+  // search todo fail
+  it("should fail to search todo item - 404", () => {
+    todoControllers.searchTodoItemByName(
+      {
+        params: {
+          name: "null",
+        },
+      },
+      res,
+      (response) => {
+        expect(response).to.have.property("statusCode", 404);
+        expect(response).to.have.property("message");
+      }
+    );
+  });
+
 
   // fetch deleted todo
   it("Should delete a todo item", () => {

@@ -7,6 +7,11 @@ const todoSchema = new Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      required: true,
+      default: "todo"
+    },
     tags: [{}],
     startTime: {
       type: Date,

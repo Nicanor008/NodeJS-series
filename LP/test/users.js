@@ -26,12 +26,12 @@ describe("Auth", () => {
   };
 
   // no users 
-  it('no users available', () => {
-    userControllers.fetchAllUsers(userTest, response, (users) => {
-      expect(users).to.have.property("statusCode", 404)
-      expect(users).to.have.property("message", "No users available")
-    })
-  })
+  // it('no users available', () => {
+  //   userControllers.fetchAllUsers(userTest, response, (users) => {
+  //     expect(users).to.have.property("statusCode", 404)
+  //     expect(users).to.have.property("message", "No users available")
+  //   })
+  // })
 
   // test create user
   it("should create a new user", () => {
