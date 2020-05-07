@@ -7,4 +7,16 @@
     - [Use environment aware, secure and hierarchical config](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/projectstructre/configguide.md)
 - Error Handling Practices
     - [Use Async-Await or promises for async error handling](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/asyncerrorhandling.md)Node.js callback style, function(err, response), is a promising way to un-maintainable code due to the mix of error handling with casual code, excessive nesting, and awkward coding patterns
-    - [Use only the built-in Error object]
+    - [Use only the built-in Error object](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/useonlythebuiltinerror.md). It helps preserve significant information like stacktrace. No need to extend the Error object multiple times (one for each error case, such as DbError, HttpError) 
+    - [Distinguish operational vs programmer errors](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/operationalvsprogrammererror.md)
+        - Operational errors (e.g. API received an invalid input) refer to known cases where the error impact is fully understood and can be handled thoughtfully. On the other hand
+        - Programmer error (e.g. trying to read undefined variable) refers to unknown code failures that dictate to gracefully restart the application
+        - There are three schools of thoughts on error handling
+            - Let the application crash and restart it.
+            - Handle all possible errors and never crash.
+            - A balanced approach between the two
+    - [Handle errors centrally, not within an Express middleware](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/centralizedhandling.md). Error handling logic such as mail to admin and logging should be encapsulated in a dedicated and centralized object that all endpoints (e.g. Express middleware, cron jobs, unit-testing) call when an error comes in
+    - [Document API errors using Swagger or GraphQL](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/documentingusingswagger.md)
+        - You have to tell your callers what errors can happen( If you don’t know what errors can happen or don’t know what they mean, then your program cannot be correct except by accident. You have to tell your callers what errors can happen and what they mean)
+    - [Exit the process gracefully when a stranger comes to town](https://github.com/Nicanor008/nodebestpractices/blob/master/sections/errorhandling/shuttingtheprocess.md). The best way to recover from programmer errors is to crash immediately. You should run your programs using a restarter that will automatically restart the program in the event of a crash. 
+    - Use a mature logger to increase error visibility
