@@ -481,3 +481,21 @@ paths:
           description: 2 todo with tag ${tag}
         404: 
           description: No todo with tag ${name} found
+  
+  /analytics/todo:
+    get:
+      summary: Get analytics for your todo items
+      tags:
+        - Todo
+      parameters:
+        - in: path
+          name: token
+          description: Authorization token
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Awesome, here is your Analytics data
+        404: 
+          description: Sorry Champ, No items available to generate analytics

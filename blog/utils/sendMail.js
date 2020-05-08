@@ -9,8 +9,8 @@ function setup() {
     secure: false,
     service: "Gmail",
     auth: {
-      user: 'shomancodes@gmail.com',
-      pass: 'ShomanCodes@2020',
+      user: 'someemail@gmail.com',
+      pass: '********',
     },
   });
 }

@@ -9,8 +9,8 @@ function setup() {
     secure: false,
     service: "Gmail",
     auth: {
-      user: 'shomancodes@gmail.com',
-      pass: 'ShomanCodes@2020',
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
     },
   });
 }

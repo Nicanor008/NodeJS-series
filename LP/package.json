@@ -2,7 +2,7 @@
   "scripts": {
     "start": "forever --minUptime 1000  app.js",
     "dev": "nodemon app.js",
-    "test": "coverage mocha --timeout 5000"
+    "test": "nyc mocha --timeout 5000"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,10 +22,10 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "coverage": "^0.4.1",
     "forever": "^2.0.0",
     "mocha": "^7.1.2",
     "nodemon": "^2.0.3",
+    "nyc": "^15.0.1",
     "sinon": "^9.0.2",
     "swagger-ui-express": "^4.1.4"
   }

@@ -1,10 +1,8 @@
 const Todo = require("./todo_model");
 
 exports.createTodo = (req, res) => {
-  const { name, startTime, endTime, duration } = req.body;
-  if (!name) {
-    // return res.status()
-    // throw new Error('BROKEN')
+  const { name, startTime, endTime, duration, category, completed } = req.body;
+  if (name === "") {
     return res.status(404).json({ message: "Todo item name is required" });
   }
   if (req.session.isLoggedIn) {
@@ -15,8 +13,11 @@ exports.createTodo = (req, res) => {
       endTime,
       duration,
       user,
+      category,
+      completed,
     });
-    todo.save().then((todoItem) => {
+    // Todo.insertMany
+    Todo.insertMany(req.body).then((todoItem) => {
       return res
         .status(200)
         .json({ message: "Todo Item created", data: todoItem });
@@ -190,14 +191,16 @@ exports.searchTodoItemByName = (req, res) => {
 // list todo by tags
 exports.listTodoByTags = (req, res) => {
   const { tag } = req.params;
-  Todo.aggregate([{ $match: { tags: { $regex: tag } } }]).then((data) => {
-  if (!data.length) {
+  Todo.find({ tags: { $regex: tag } })
+    .sort({ createdAt: -1 })
+    .then((data) => {
+      if (!data.length) {
+        return res
+          .status(200)
+          .json({ message: `No todo with  tag ${tag} found` });
+      }
       return res
         .status(200)
-        .json({ message: `No todo with  tag ${tag} found` });
-    }
-    return res
-      .status(200)
-      .json({ message: `${data.length} todo with tag ${tag}`, data });
-  });
+        .json({ message: `${data.length} todo with tag ${tag}`, data });
+    });
 };
