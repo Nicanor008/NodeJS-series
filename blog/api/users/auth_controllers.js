@@ -47,7 +47,6 @@ exports.loginUser = (req, res) => {
   User.findOne({ email })
     .then((response) => {
       console.log(
-        ">>>>>>>>>>>>>............................>>>>>>>>>>>>>",
         req.session
       );
       if (!response) {
@@ -81,7 +80,6 @@ exports.loginUser = (req, res) => {
           req.session.user = response._id;
           req.session.save((err) => {
             console.log(err);
-            console.log(">>>>>>................>>>>>>", req.session);
             return res.status(statusCode.OK).json({
               message: "Login successful",
               token: "Bearer " + token,

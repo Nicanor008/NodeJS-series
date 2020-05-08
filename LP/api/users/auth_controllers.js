@@ -1,11 +1,11 @@
 const User = require("./users_models");
 const bcrypt = require("bcryptjs");
-const sendMail = require("../utils/sendMail");
+const sendMail = require("../../utils/sendMail");
 const statusCode = require("http-status");
 const jwt = require("jsonwebtoken");
 
 // register new user
-exports.registerUser = (req, res) => {
+exports.registerUser = (req, res, next) => {
   const { password, email, name, role } = req.body;
   // const image = req.file;
   // const pictureUrl = image.path;
@@ -46,9 +46,6 @@ exports.loginUser = (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email })
     .then((response) => {
-      console.log(
-        req.session
-      );
       if (!response) {
         return res.status(404).json({ message: "Email does not exist" });
       }
@@ -115,16 +112,16 @@ exports.verifyAccount = (req, res) => {
     .then((user) => {
       if (!user) {
         return res
-          .status(statusCode.NOT_FOUND)
+          .status(404)
           .json({ message: `Account ${email} does not exist` });
       }
       return res
-        .status(statusCode.OK)
+        .status(200)
         .json({ message: "Account has been verified", data: user });
     })
     .catch((error) => {
       return res
-        .status(statusCode.SERVICE_UNAVAILABLE)
+        .status(500)
         .json({ message: "Something went happen. Try again", error });
     });
 };
