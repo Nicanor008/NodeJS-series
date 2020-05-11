@@ -48,7 +48,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false,
+    useFindAndModify: false
   })
   .then(() => {
     console.log(chalk.green("DB Running"));

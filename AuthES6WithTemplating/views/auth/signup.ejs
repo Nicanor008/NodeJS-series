@@ -1,0 +1,31 @@
+<%- include('../includes/header.ejs') %>
+
+<body>
+    <main>
+        <form class="formWrapper" action="/auth/register" method="POST">
+            <center>Create an Account</center>
+            <br />
+            <div class="groupInput name">
+                <label for="name">Name</label>   
+                <br /> 
+                <input type="text" class="input" name="name" />
+            </div>
+            <div class="groupInput email">
+                <label for="email">Email</label>    
+                <br /> 
+                <input type="email" class="input" name="email" />
+            </div>
+            <div class="groupInput password">
+                <label for="password">Password</label>    
+                <br /> 
+                <input type="password" class="input" name="password" />
+            </div>
+            <br />
+            <button class="btn submitBtn" type="submit">Create Account</button>
+            <span style="font-size: small; margin-left: 10px;">Existing User? <a href="/auth/login">Login</a></span>
+        </form>
+    </main>
+
+</body>
+
+<%- include('../includes/footer.ejs') %>

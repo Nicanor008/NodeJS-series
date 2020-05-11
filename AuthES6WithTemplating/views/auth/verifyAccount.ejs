@@ -1,0 +1,17 @@
+<%- include('../includes/header.ejs') %>
+
+<body>
+    <main>
+        <h2 style="text-align: center;padding-top: 20%;">
+            <%- message %>
+            <br /><br />
+            <% if(errorIsPresent) { %>
+            <a href="/auth/register">Go Back</a>
+            <% } %>
+            <a href="/auth/login">Login</a>
+        </h2>
+    </main>
+
+</body>
+
+<%- include('../includes/footer.ejs') %>

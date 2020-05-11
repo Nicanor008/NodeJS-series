@@ -1,0 +1,21 @@
+<%- include('../includes/header.ejs') %>
+
+<body>
+    <main>
+        <h3 style="text-align: center;">Available Users</h3>
+        <div class="userWrapper">
+            <% if(data.length > 0) { 
+                    for (let user of data) { %>
+            <div class="singleUser">
+                <img src="https://cdn1.iconfinder.com/data/icons/avatars-55/100/avatar_profile_user_music_headphones_shirt_cool-512.png"
+                    alt="profile pic" height="100" width="100" />
+                <%= user.name %>
+            </div>
+            <% } 
+            } %>
+        </div>
+    </main>
+
+</body>
+
+<%- include('../includes/footer.ejs') %>
