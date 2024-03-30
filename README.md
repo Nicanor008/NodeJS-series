@@ -1,7 +1,5 @@
-## All About my Learnings on NodeJS
-
-### NodeJS Learning Curve
-- [Levelling up](https://github.com/Nicanor008/10-Days-Of-NodeJS/tree/master/10DaysOfNodeJS)
+### Projects here include
+- [10 days NodeJS Learning/Levelling up](./10DaysOfNodeJS)
 - Building NodeJS Apps
     - [E Commerce API](https://github.com/Nicanor008/10-Days-Of-NodeJS/tree/master/ECommerce)
     - [Minimalist Blog](https://github.com/Nicanor008/10-Days-Of-NodeJS/tree/master/blog)
